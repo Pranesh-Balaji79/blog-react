@@ -19,13 +19,13 @@ function Login() {
       localStorage.setItem("loggedIn", "true");
       navigate("/");
     } else {
-      alert("❌ Invalid credentials");
+      alert("Invalid credentials");
     }
   };
 
   return (
-    <div className="card p-4 shadow border-0 mx-auto" style={{ maxWidth: 400 }}>
-      <h3 className="fw-bold mb-3 text-center">🔐 Login</h3>
+    <div className="card p-4 shadow-sm mx-auto" style={{ maxWidth: 400 }}>
+      <h3 className="fw-bold mb-3 text-center">Login</h3>
 
       <form onSubmit={handleLogin}>
         <input
@@ -44,9 +44,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="btn btn-success w-100">
-          Login
-        </button>
+        <button className="btn btn-success w-100">Login</button>
       </form>
     </div>
   );

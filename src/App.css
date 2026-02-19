@@ -1,27 +1,28 @@
+/* ===== GLOBAL ===== */
 body {
   background: linear-gradient(135deg, #f6f8fa, #eef2ff);
+  font-family: 'Inter', system-ui, sans-serif;
   min-height: 100vh;
-  transition: all 0.3s ease;
-  font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-body.dark-mode {
-  background: #0f172a;
-  color: #e2e8f0;
+.app-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 24px;
 }
 
-.card {
-  border-radius: 18px;
-  transition: all 0.25s ease;
+/* ===== NAVBAR ===== */
+.navbar {
+  backdrop-filter: blur(10px);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.navbar-brand {
-  font-weight: 700;
-  letter-spacing: 0.5px;
+/* ===== HERO ===== */
+.hero {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
 }
 
 .hero-title {
@@ -29,18 +30,45 @@ body.dark-mode {
   letter-spacing: -0.5px;
 }
 
-.tag-badge {
-  font-size: 12px;
-}
+/* ===== CARDS ===== */
 .card {
-  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+/* ===== FORM ===== */
+.form-control,
+.form-select {
+  border-radius: 12px;
+  padding: 10px 14px;
 }
 
 .btn {
-  border-radius: 10px;
+  border-radius: 12px;
+  font-weight: 600;
 }
 
-.form-control,
-.form-select {
-  border-radius: 10px;
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+/* ===== DARK MODE ===== */
+body.dark-mode {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+body.dark-mode .card,
+body.dark-mode .hero {
+  background: #1e293b;
+  color: #e2e8f0;
 }

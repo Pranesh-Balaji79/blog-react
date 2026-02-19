@@ -20,7 +20,7 @@ function PostList() {
   const addPost = (post) => setPosts([post, ...posts]);
 
   const updatePost = (updated) => {
-    setPosts(posts.map(p => p.id === updated.id ? updated : p));
+    setPosts(posts.map(p => (p.id === updated.id ? updated : p)));
     setEditingPost(null);
   };
 
@@ -34,79 +34,114 @@ function PostList() {
 
   return (
     <>
+      {/* HERO */}
+      <div className="hero-pro">
+        <h1 className="display-5 fw-bold mb-2">Blog</h1>
+        <p className="text-muted mb-4">
+          Inspirational blog designs for inspiration
+        </p>
+
+        <div className="search-hero">
+          <input
+            className="form-control form-control-lg"
+            placeholder="Search blog posts..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
+
+      {/* CATEGORY CHIPS */}
+      <div className="category-row">
+        {["All", "General", "React", "JavaScript", "Web Dev"].map(cat => (
+          <button
+            key={cat}
+            className={`chip ${category === cat ? "chip-active" : ""}`}
+            onClick={() => setCategory(cat)}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* FEATURED */}
+      {posts.length > 0 && (
+        <div className="featured-card card border-0">
+          {posts[0].image && (
+            <img
+              src={posts[0].image}
+              className="card-img-top"
+              style={{ height: 260, objectFit: "cover" }}
+            />
+          )}
+          <div className="card-body">
+            <span className="badge bg-primary mb-2">
+              {posts[0].category}
+            </span>
+            <h4 className="fw-bold">{posts[0].title}</h4>
+            <p className="text-muted">{posts[0].content}</p>
+          </div>
+        </div>
+      )}
+
       <PostForm
         addPost={addPost}
         updatePost={updatePost}
         editingPost={editingPost}
       />
 
-      <div className="row mb-4">
-        <div className="col-md-6 mb-2">
-          <input
-            className="form-control"
-            placeholder="🔍 Search posts..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+      {filtered.length === 0 && (
+        <div className="empty-state">
+          <h5>No posts found</h5>
+          <p>Start by creating your first post ✨</p>
         </div>
+      )}
 
-        <div className="col-md-6">
-          <select
-            className="form-select"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+      <div className="post-grid">
+        {filtered.map(post => (
+          <motion.div
+            key={post.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
           >
-            <option>All</option>
-            <option>General</option>
-            <option>React</option>
-            <option>JavaScript</option>
-            <option>Web Dev</option>
-          </select>
-        </div>
-      </div>
+            <div className="card h-100 shadow-sm">
+              {post.image && (
+                <img
+                  src={post.image}
+                  className="card-img-top"
+                  style={{ height: 200, objectFit: "cover" }}
+                />
+              )}
 
-      {filtered.map(post => (
-        <motion.div
-          key={post.id}
-          className="card mb-4 shadow border-0"
-          whileHover={{ scale: 1.02 }}
-        >
-          {post.image && (
-            <img
-              src={post.image}
-              className="card-img-top"
-              style={{ height: 200, objectFit: "cover" }}
-            />
-          )}
+              <div className="card-body">
+                <span className="badge bg-primary mb-2">
+                  {post.category}
+                </span>
 
-          <div className="card-body">
-            <span className="badge bg-primary mb-2">
-              {post.category}
-            </span>
+                <h5 className="fw-bold">{post.title}</h5>
+                <p className="text-muted small">{post.content}</p>
+                <small className="text-muted">{post.date}</small>
 
-            <h5 className="fw-bold">{post.title}</h5>
-            <p>{post.content}</p>
+                <div className="mt-3">
+                  <button
+                    onClick={() => setEditingPost(post)}
+                    className="btn btn-warning btn-sm me-2"
+                  >
+                    Edit
+                  </button>
 
-            <small className="text-muted">{post.date}</small>
-
-            <div className="mt-3">
-              <button
-                onClick={() => setEditingPost(post)}
-                className="btn btn-warning btn-sm me-2"
-              >
-                Edit
-              </button>
-
-              <button
-                onClick={() => deletePost(post.id)}
-                className="btn btn-danger btn-sm"
-              >
-                Delete
-              </button>
+                  <button
+                    onClick={() => deletePost(post.id)}
+                    className="btn btn-danger btn-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
+          </motion.div>
+        ))}
+      </div>
     </>
   );
 }

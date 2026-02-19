@@ -9,16 +9,14 @@ function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
 
-    const user = { email, password };
-    localStorage.setItem("user", JSON.stringify(user));
-
-    alert("✅ Registered successfully!");
+    localStorage.setItem("user", JSON.stringify({ email, password }));
+    alert("Registered successfully!");
     navigate("/login");
   };
 
   return (
-    <div className="card p-4 shadow border-0 mx-auto" style={{ maxWidth: 400 }}>
-      <h3 className="fw-bold mb-3 text-center">📝 Register</h3>
+    <div className="card p-4 shadow-sm mx-auto" style={{ maxWidth: 400 }}>
+      <h3 className="fw-bold mb-3 text-center">Register</h3>
 
       <form onSubmit={handleRegister}>
         <input

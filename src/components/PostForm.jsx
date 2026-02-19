@@ -17,9 +17,11 @@ function PostForm({ addPost, updatePost, editingPost }) {
 
   const handleImage = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
     reader.onloadend = () => setImage(reader.result);
-    if (file) reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = (e) => {
@@ -42,7 +44,7 @@ function PostForm({ addPost, updatePost, editingPost }) {
   };
 
   return (
-    <form className="card p-4 mb-4 shadow-lg border-0" onSubmit={handleSubmit}>
+    <form className="card p-4 mb-4 shadow-sm" onSubmit={handleSubmit}>
       <h5 className="fw-bold mb-3">✨ Create Post</h5>
 
       <input
@@ -56,7 +58,7 @@ function PostForm({ addPost, updatePost, editingPost }) {
       <textarea
         className="form-control mb-2"
         rows="3"
-        placeholder="Write something amazing..."
+        placeholder="Write something..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
         required

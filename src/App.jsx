@@ -12,12 +12,11 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div className="container mt-4">
+      <div className="app-container">
         <Routes>
           <Route path="/" element={<PostList />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-
           <Route
             path="/dashboard"
             element={
@@ -26,7 +25,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
