@@ -1,0 +1,46 @@
+body {
+  background: linear-gradient(135deg, #f6f8fa, #eef2ff);
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body.dark-mode {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.card {
+  border-radius: 18px;
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.tag-badge {
+  font-size: 12px;
+}
+.card {
+  backdrop-filter: blur(10px);
+}
+
+.btn {
+  border-radius: 10px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+}
